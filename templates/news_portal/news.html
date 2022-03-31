@@ -1,0 +1,21 @@
+{% extends 'news_portal/default.html' %}
+
+{% load profanity %}
+
+{% block title %}news{% endblock title %}
+
+
+{% block content %}
+
+   <h1>Новости на сайте</h1>
+     {% for el in news %}
+      <h3>{{ el.title|censor}}</h3>
+      <p>{{ el.text|truncatechars:20|censor}}</p>
+      <p>{{ el.dateCreation }}</p>
+      <p>{{ el.author }}</p>
+      <a href="{% url 'news-details' el.id %}" >Подробнее о статье</a>
+
+ <hr>
+   {% endfor %}
+
+{% endblock content %}
